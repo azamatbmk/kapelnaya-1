@@ -15,6 +15,8 @@ export default function JsonLd() {
         email: CLINIC.email,
         address: {
           "@type": "PostalAddress",
+          streetAddress: CLINIC.street,
+          postalCode: CLINIC.postalCode,
           addressLocality: CLINIC.city,
           addressRegion: CLINIC.region,
           addressCountry: "RU",

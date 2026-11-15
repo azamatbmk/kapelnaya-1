@@ -10,8 +10,13 @@ export const DOCTOR = {
   role: "Врач клиники",
   worksAt: CLINIC.brand,
   cityLocative: CLINIC.cityLocative,
+  lead: `Приём в клинике «${CLINIC.brand}»: ${CLINIC.street}, ${CLINIC.city}. Выездная помощь — по городу и РСО-Алании.`,
   experienceNote:
-    "Опыт работы в психиатрии и наркологии, в том числе в службе скорой помощи и реанимации. Приём в клинике «Капельная №1» и консультации по записи.",
+    "5 лет опыта работы с наркологическими пациентами. Приём в клинике «Капельная №1» и консультации по записи.",
+  about: [
+    "5 лет опыта работы с наркологическими пациентами. Также есть опыт в психиатрии и наркологии, в том числе в службе скорой помощи и реанимации.",
+    "Работает с зависимостями, тревожными и депрессивными состояниями, оказывает наркологическую помощь на дому и составляет дальнейший план лечения.",
+  ],
   education: [
     {
       place:
@@ -24,6 +29,20 @@ export const DOCTOR = {
       detail: "Ординатура на кафедре психиатрии и наркологии",
     },
   ],
+  educationNote:
+    "Диплом и аккредитация подтверждаются Минздравом России. Копии документов предоставляются по запросу на консультации.",
+  schedule: [
+    "Выезд на дом — круглосуточно, включая выходные и праздники",
+    "Плановый приём и консультации — по предварительной записи (телефон или форма на сайте)",
+    "Зона: Владикавказ и населённые пункты РСО-Алании (выезд по согласованию)",
+  ],
+  credentials: [
+    `${CLINIC.legal.form} ${CLINIC.legal.name}.`,
+    `Юридический и фактический адрес: ${CLINIC.address}.`,
+    `ИНН ${CLINIC.legal.inn}. ОГРНИП ${CLINIC.legal.ogrnip}.`,
+    `Р/с ${CLINIC.legal.account}. БИК ${CLINIC.legal.bik}. К/с ${CLINIC.legal.corr}.`,
+  ],
+  credentialsNote: CLINIC.legal.license,
   contacts: {
     phoneDisplay: PHONE_DISPLAY,
     phoneE164: PHONE_E164,
@@ -31,5 +50,7 @@ export const DOCTOR = {
   },
   profiles: {
     prodoctorov: "https://prodoctorov.ru/beslan/vrach/1221681-bekoev/",
+    instagram: "https://www.instagram.com/dr.oleg_bekoevv/",
+    instagramLabel: "@dr.oleg_bekoevv",
   },
 } as const;

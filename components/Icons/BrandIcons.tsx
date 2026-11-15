@@ -23,18 +23,6 @@ export default function BrandIcons() {
       <symbol id="icon-chair" viewBox="0 0 38 35">
         <path d="M9 14V9c0-5 3-7 10-7s10 2 10 7v5M6 27V15c-4-4-5 0-5 2 0 4 2 6 5 6m26 4V15c4-4 5 0 5 2 0 4-2 6-5 6M6 27h26M9 27v6m20-6v6M7 20h24" />
       </symbol>
-      <symbol id="icon-stethoscope" viewBox="0 0 56 62">
-        <path d="M8 8H4v14c0 13 9 18 17 18s17-5 17-18V8h-5M10 5v7m21-7v7M21 40v5c0 19 28 18 28 2V35" />
-        <circle cx="49" cy="29" r="6" />
-      </symbol>
-      <symbol id="icon-iv" viewBox="0 0 56 66">
-        <rect x="11" y="8" width="27" height="34" rx="5" />
-        <path d="M21 8V4h8v4M25 42v9m-4-9v5h8v-5M25 51c0 15 20 15 20 0M30 21h7" />
-      </symbol>
-      <symbol id="icon-drop" viewBox="0 0 48 63">
-        <path d="M24 3C19 12 7 25 7 37a17 17 0 0 0 34 0C41 25 29 12 24 3Z" />
-        <path d="M15 36c0 7 3 11 8 12" />
-      </symbol>
       <symbol id="brand-drop" viewBox="0 0 40 52">
         <path
           d="M20 3C15 13 4 23 4 34a16 16 0 0 0 32 0C36 23 25 13 20 3Z"

@@ -2,34 +2,12 @@
 
 import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
-import BrandIcons, { Icon } from "@/components/Icons/BrandIcons";
+import { Icon } from "@/components/Icons/BrandIcons";
+import SiteFooter from "@/components/Site/SiteFooter";
+import SiteHeader from "@/components/Site/SiteHeader";
+import { FAQ } from "@/lib/faq";
+import { CLINIC } from "@/lib/clinic";
 import { submitContact } from "@/lib/submitContact";
-
-const serviceContent: Record<string, [string, string]> = {
-  consultation: [
-    "Консультация нарколога",
-    "Обсудите со специалистом вашу ситуацию, вопросы о приёме и возможных вариантах медицинской помощи. Состав услуг и стоимость необходимо уточнить у клиники.",
-  ],
-  care: [
-    "Вывод из запоя",
-    "Возможность оказания помощи и её формат определяет врач после оценки состояния. Условия приёма и стоимость необходимо уточнить у клиники.",
-  ],
-  infusions: [
-    "Капельницы",
-    "Обсудите назначения с врачом. Состав процедур, показания и ограничения определяются на консультации. Условия приёма и стоимость необходимо уточнить у клиники.",
-  ],
-};
-
-const infoContent: Record<string, [string, string]> = {
-  documents: [
-    "Документы клиники",
-    "Документы и сведения о лицензии будут размещены после предоставления клиникой.",
-  ],
-  privacy: [
-    "Политика конфиденциальности",
-    "Перед запуском онлайн-записи клиника должна предоставить реквизиты оператора и политику обработки персональных данных. Черновик политики: страница «Политика конфиденциальности».",
-  ],
-};
 
 const photos: [string, string][] = [
   ["/images/reception-full.webp", "Ресепшен клиники"],
@@ -39,31 +17,22 @@ const photos: [string, string][] = [
 ];
 
 export default function HomePage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [infoOpen, setInfoOpen] = useState(false);
-  const [infoTitle, setInfoTitle] = useState("");
-  const [infoCopy, setInfoCopy] = useState("");
-  const [infoShowCta, setInfoShowCta] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [formStatus, setFormStatus] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState("");
-  const infoRef = useRef<HTMLDialogElement>(null);
+  const [faqOpen, setFaqOpen] = useState(0);
   const galleryRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    const info = infoRef.current;
     const gallery = galleryRef.current;
-    if (infoOpen) info?.showModal();
-    else info?.close();
     if (galleryOpen) gallery?.showModal();
     else gallery?.close();
-  }, [infoOpen, galleryOpen]);
+  }, [galleryOpen]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
       if (!galleryOpen) return;
       if (e.key === "ArrowLeft") {
         e.preventDefault();
@@ -77,24 +46,6 @@ export default function HomePage() {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [galleryOpen]);
-
-  const openService = (key: string) => {
-    const content = serviceContent[key];
-    if (!content) return;
-    setInfoTitle(content[0]);
-    setInfoCopy(content[1]);
-    setInfoShowCta(true);
-    setInfoOpen(true);
-  };
-
-  const openInfo = (key: string) => {
-    const content = infoContent[key];
-    if (!content) return;
-    setInfoTitle(content[0]);
-    setInfoCopy(content[1]);
-    setInfoShowCta(false);
-    setInfoOpen(true);
-  };
 
   const openGallery = (index: number) => {
     setPhotoIndex(index);
@@ -159,70 +110,8 @@ export default function HomePage() {
 
   return (
     <>
-      <BrandIcons />
-      <a className="skip-link" href="#main">
-        Перейти к содержимому
-      </a>
-
       <div className="site-shell" id="top">
-        <header className="site-header">
-          <div className="header-inner">
-            <a className="brand" href="#top" aria-label="Капельная №1 — на главную">
-              <Icon id="brand-drop" className="brand-icon" />
-              <span className="brand-copy">
-                <strong>КАПЕЛЬНАЯ №1</strong>
-                <span>Медицинская клиника</span>
-              </span>
-            </a>
-            <span className="location header-location">
-              <Icon id="icon-pin" />
-              Владикавказ
-            </span>
-            <nav className="desktop-nav" aria-label="Основная навигация">
-              <a href="#services">Услуги</a>
-              <a href="#clinic">О клинике</a>
-              <Link href="/vrachi/bekoev/">О враче</Link>
-              <a href="#contacts">Контакты</a>
-            </nav>
-            <a className="button header-cta" href="#appointment">
-              Записаться
-            </a>
-            <button
-              className="menu-toggle"
-              type="button"
-              aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
-              aria-expanded={menuOpen}
-              aria-controls="mobile-nav"
-              onClick={() => setMenuOpen((v) => !v)}
-            >
-              <span />
-              <span />
-              <span />
-            </button>
-          </div>
-          <nav
-            id="mobile-nav"
-            className="mobile-nav"
-            aria-label="Мобильная навигация"
-            hidden={!menuOpen}
-          >
-            <a href="#services" onClick={() => setMenuOpen(false)}>
-              Услуги
-            </a>
-            <a href="#clinic" onClick={() => setMenuOpen(false)}>
-              О клинике
-            </a>
-            <Link href="/vrachi/bekoev/" onClick={() => setMenuOpen(false)}>
-              О враче
-            </Link>
-            <a href="#contacts" onClick={() => setMenuOpen(false)}>
-              Контакты
-            </a>
-            <a href="#appointment" onClick={() => setMenuOpen(false)}>
-              Записаться на консультацию
-            </a>
-          </nav>
-        </header>
+        <SiteHeader />
 
         <main id="main">
           <section className="hero" aria-labelledby="hero-title">
@@ -283,84 +172,18 @@ export default function HomePage() {
           >
             <div className="section-heading">
               <p className="eyebrow">
-                НАПРАВЛЕНИЯ ПОМОЩИ
+                УСЛУГИ И СТОИМОСТЬ
                 <span />
               </p>
               <h2 id="services-title">С чего начать</h2>
             </div>
-            <div className="service-grid">
-              <article className="service-card">
-                <span className="service-number" aria-hidden="true">
-                  01
-                </span>
-                <div className="service-main">
-                  <Icon id="icon-stethoscope" className="service-icon" />
-                  <div>
-                    <h3>
-                      Консультация
-                      <br />
-                      нарколога
-                    </h3>
-                    <p>
-                      Обсудить ситуацию
-                      <br />
-                      со специалистом
-                    </p>
-                  </div>
-                </div>
-                <button
-                  className="service-link"
-                  type="button"
-                  onClick={() => openService("consultation")}
-                >
-                  Подробнее <Icon id="icon-arrow" />
-                </button>
-              </article>
-              <article className="service-card">
-                <span className="service-number" aria-hidden="true">
-                  02
-                </span>
-                <div className="service-main">
-                  <Icon id="icon-iv" className="service-icon" />
-                  <div>
-                    <h3>Вывод из запоя</h3>
-                    <p>
-                      Узнать о медицинской
-                      <br />
-                      помощи
-                    </p>
-                  </div>
-                </div>
-                <button
-                  className="service-link"
-                  type="button"
-                  onClick={() => openService("care")}
-                >
-                  Подробнее <Icon id="icon-arrow" />
-                </button>
-              </article>
-              <article className="service-card">
-                <span className="service-number" aria-hidden="true">
-                  03
-                </span>
-                <div className="service-main">
-                  <Icon id="icon-drop" className="service-icon" />
-                  <div>
-                    <h3>Капельницы</h3>
-                    <p>
-                      Обсудить назначения
-                      <br />с врачом
-                    </p>
-                  </div>
-                </div>
-                <button
-                  className="service-link"
-                  type="button"
-                  onClick={() => openService("infusions")}
-                >
-                  Подробнее <Icon id="icon-arrow" />
-                </button>
-              </article>
+            <div className="price-grid">
+              {CLINIC.services.map((service) => (
+                <article className="price-card" key={service.title}>
+                  <h3>{service.title}</h3>
+                  <p>{service.price}</p>
+                </article>
+              ))}
             </div>
           </section>
 
@@ -436,6 +259,49 @@ export default function HomePage() {
                   loading="lazy"
                 />
               </button>
+            </div>
+          </section>
+
+          <section className="faq" id="faq" aria-labelledby="faq-title">
+            <div className="section-heading">
+              <p className="eyebrow">
+                ВОПРОСЫ И ОТВЕТЫ
+                <span />
+              </p>
+              <h2 id="faq-title">
+                Частые вопросы о наркологе
+                <br />и психиатре
+              </h2>
+              <p className="faq-intro">
+                Нарколог на дом, вывод из запоя, капельница, кодирование и
+                лечение алкоголизма во Владикавказе.
+              </p>
+            </div>
+            <div className="faq-list">
+              {FAQ.map((item, index) => {
+                const open = faqOpen === index;
+                const panelId = `faq-panel-${index}`;
+                return (
+                  <div
+                    className={open ? "faq-item is-open" : "faq-item"}
+                    key={item.q}
+                  >
+                    <button
+                      className="faq-question"
+                      type="button"
+                      aria-expanded={open}
+                      aria-controls={panelId}
+                      onClick={() => setFaqOpen(open ? -1 : index)}
+                    >
+                      <span>{item.q}</span>
+                      <span className="faq-toggle" aria-hidden="true" />
+                    </button>
+                    <div className="faq-answer" id={panelId} hidden={!open}>
+                      <p>{item.a}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </section>
 
@@ -530,70 +396,8 @@ export default function HomePage() {
           </section>
         </main>
 
-        <footer className="site-footer" id="contacts">
-          <div className="footer-main">
-            <a
-              className="brand footer-brand"
-              href="#top"
-              aria-label="Капельная №1 — наверх"
-            >
-              <Icon id="brand-drop" className="brand-icon" />
-              <span className="brand-copy">
-                <strong>КАПЕЛЬНАЯ №1</strong>
-                <span>Медицинская клиника</span>
-              </span>
-            </a>
-            <span className="location footer-location">
-              <Icon id="icon-pin" />
-              Владикавказ
-            </span>
-            <nav
-              className="footer-links"
-              aria-label="Дополнительная информация"
-            >
-              <a href="#appointment">Контакты</a>
-              <Link href="/vrachi/bekoev/">О враче</Link>
-              <button type="button" onClick={() => openInfo("documents")}>
-                Документы
-              </button>
-              <Link href="/politika-konfidencialnosti/">
-                Политика конфиденциальности
-              </Link>
-            </nav>
-          </div>
-          <p className="medical-note">
-            Имеются противопоказания. Необходима консультация специалиста.
-          </p>
-        </footer>
+        <SiteFooter />
       </div>
-
-      <dialog
-        className="info-dialog"
-        ref={infoRef}
-        aria-labelledby="dialog-title"
-        onClick={(e) => onBackdropClick(e, () => setInfoOpen(false))}
-      >
-        <button
-          className="dialog-close"
-          type="button"
-          aria-label="Закрыть окно"
-          onClick={() => setInfoOpen(false)}
-        >
-          ×
-        </button>
-        <p className="eyebrow">КАПЕЛЬНАЯ №1</p>
-        <h2 id="dialog-title">{infoTitle}</h2>
-        <p>{infoCopy}</p>
-        {infoShowCta ? (
-          <a
-            className="button"
-            href="#appointment"
-            onClick={() => setInfoOpen(false)}
-          >
-            Перейти к записи
-          </a>
-        ) : null}
-      </dialog>
 
       <dialog
         className="gallery-dialog"
