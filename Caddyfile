@@ -5,25 +5,28 @@
 :8080 {
 	root * /srv
 	encode gzip zstd
-	respond /healthz 200
 
-	# После регистрации домена раскомментируйте и подставьте имя:
-	# @www host www.kapelnaya1.ru
-	# redir @www https://kapelnaya1.ru{uri} permanent
-
-	redir /index.html / permanent
-	@nestedIndex path_regexp nested ^(.+)/index\.html$
-	redir @nestedIndex {re.nested.1}/ permanent
-
-	@noSlash {
-		not path */
-		not path /
-		not path *.*
+	handle /healthz {
+		respond 200
 	}
-	redir @noSlash {path}/ 308
 
-	try_files {path} {path}/ =404
-	file_server
+	handle {
+		redir /index.html / permanent
+		@nestedIndex path_regexp nested ^(.+)/index\.html$
+		redir @nestedIndex {re.nested.1}/ permanent
+
+		@noSlash {
+			not path */
+			not path /
+			not path *.*
+		}
+		redir @noSlash {path}/ 308
+
+		# try_files превращает «/» в «//index.html» и не находит главную
+		rewrite / /index.html
+		try_files {path} {path}/index.html
+		file_server
+	}
 
 	handle_errors {
 		@404 {
