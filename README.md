@@ -16,4 +16,4 @@ npm run dev
 Сборка: `npm run build` → папка `out/`.
 
 ## Деплой
-Dockerfile + Caddy на порту 8080 (Timeweb App Platform).
+`npm run build` собирает сайт в папку `out/`. На обычный хостинг загружается содержимое этой папки, в корень сайта. `node_modules` и исходники загружать не нужно.
