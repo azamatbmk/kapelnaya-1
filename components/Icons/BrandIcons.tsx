@@ -17,9 +17,6 @@ export default function BrandIcons() {
         <circle cx="16" cy="9" r="6" />
         <path d="M5 30v-3c0-6 4-10 11-10s11 4 11 10v3H5Z" />
       </symbol>
-      <symbol id="icon-leaf" viewBox="0 0 36 34">
-        <path d="M18 31c-1-12 3-19 12-26M17 23C8 24 3 20 3 11c10 0 15 5 14 12ZM19 22C17 10 23 4 33 3c1 10-3 18-14 19Z" />
-      </symbol>
       <symbol id="icon-chair" viewBox="0 0 38 35">
         <path d="M9 14V9c0-5 3-7 10-7s10 2 10 7v5M6 27V15c-4-4-5 0-5 2 0 4 2 6 5 6m26 4V15c4-4 5 0 5 2 0 4-2 6-5 6M6 27h26M9 27v6m20-6v6M7 20h24" />
       </symbol>

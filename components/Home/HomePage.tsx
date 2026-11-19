@@ -9,6 +9,43 @@ import { FAQ } from "@/lib/faq";
 import { CLINIC } from "@/lib/clinic";
 import { submitContact } from "@/lib/submitContact";
 
+const benefits = [
+  { icon: "icon-pin", text: "Выезд круглосуточно" },
+  { icon: "icon-person", text: "Консультация на дому бесплатно" },
+  { icon: "icon-chair", text: "Приём по записи" },
+] as const;
+
+const visitSteps = [
+  {
+    title: "Звонок",
+    text: "Позвоните или оставьте номер. Уточним адрес и самочувствие.",
+  },
+  {
+    title: "Осмотр",
+    text: "Врач приезжает на дом во Владикавказе и по РСО-Алании.",
+  },
+  {
+    title: "Помощь на месте",
+    text: "После осмотра врач решает, нужна ли капельница, и проводит её дома.",
+  },
+  {
+    title: "Рекомендации",
+    text: "Расскажем, что делать дальше, и ответим на вопросы.",
+  },
+] as const;
+
+const beforeArrival = [
+  "Обеспечьте покой и приток свежего воздуха",
+  "Дайте воду, если человек может пить",
+  "Оставайтесь рядом до приезда врача",
+] as const;
+
+const avoidWhileWaiting = [
+  "Не отбирайте бутылку силой",
+  "Не давайте лекарства самостоятельно",
+  "Не спорьте и не стыдите",
+] as const;
+
 const photos: [string, string][] = [
   ["/images/reception-full.webp", "Ресепшен клиники"],
   ["/images/treatment-full.webp", "Кабинет для процедур"],
@@ -150,19 +187,13 @@ export default function HomePage() {
             </div>
           </section>
 
-          <div className="benefits" aria-label="Подход клиники">
-            <div className="benefit">
-              <Icon id="icon-person" />
-              <span>Индивидуальный подход</span>
-            </div>
-            <div className="benefit">
-              <Icon id="icon-leaf" />
-              <span>Внимание к деталям</span>
-            </div>
-            <div className="benefit">
-              <Icon id="icon-chair" />
-              <span>Спокойная атмосфера</span>
-            </div>
+          <div className="benefits" aria-label="Как устроена помощь">
+            {benefits.map((item) => (
+              <div className="benefit" key={item.text}>
+                <Icon id={item.icon} />
+                <span>{item.text}</span>
+              </div>
+            ))}
           </div>
 
           <section
@@ -185,6 +216,25 @@ export default function HomePage() {
                 </article>
               ))}
             </div>
+          </section>
+
+          <section className="visit" id="visit" aria-labelledby="visit-title">
+            <div className="section-heading">
+              <p className="eyebrow">
+                ВЫЕЗД НА ДОМ
+                <span />
+              </p>
+              <h2 id="visit-title">Как проходит выезд</h2>
+            </div>
+            <ol className="visit-steps">
+              {visitSteps.map((step, index) => (
+                <li className="visit-step" key={step.title}>
+                  <span>{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </li>
+              ))}
+            </ol>
           </section>
 
           <section className="clinic" id="clinic" aria-labelledby="clinic-title">
@@ -302,6 +352,34 @@ export default function HomePage() {
                   </div>
                 );
               })}
+            </div>
+          </section>
+
+          <section className="advice" aria-labelledby="advice-title">
+            <div className="section-heading">
+              <p className="eyebrow">
+                ПОКА ВРАЧ ЕДЕТ
+                <span />
+              </p>
+              <h2 id="advice-title">До приезда врача</h2>
+            </div>
+            <div className="advice-grid">
+              <article className="advice-card">
+                <h3>Что сделать</h3>
+                <ul>
+                  {beforeArrival.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="advice-card">
+                <h3>Чего не делать</h3>
+                <ul>
+                  {avoidWhileWaiting.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
             </div>
           </section>
 
