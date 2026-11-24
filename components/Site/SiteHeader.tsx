@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import BrandIcons, { Icon } from "@/components/Icons/BrandIcons";
+import { CLINIC_PHONE_DISPLAY, CLINIC_PHONE_TEL } from "@/lib/phone";
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -45,9 +46,13 @@ export default function SiteHeader() {
             <Link href="/vrachi/bekoev/">О враче</Link>
             <Link href={to("contacts")}>Контакты</Link>
           </nav>
-          <Link className="button header-cta" href={to("appointment")}>
-            Записаться
-          </Link>
+          <a
+            className="button header-cta"
+            href={CLINIC_PHONE_TEL}
+            aria-label={`Позвонить в клинику ${CLINIC_PHONE_DISPLAY}`}
+          >
+            Позвонить
+          </a>
           <button
             className="menu-toggle"
             type="button"
@@ -79,9 +84,9 @@ export default function SiteHeader() {
           <Link href={to("contacts")} onClick={close}>
             Контакты
           </Link>
-          <Link href={to("appointment")} onClick={close}>
-            Записаться на консультацию
-          </Link>
+          <a href={CLINIC_PHONE_TEL} onClick={close}>
+            Позвонить
+          </a>
         </nav>
       </header>
     </>
