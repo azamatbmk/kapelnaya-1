@@ -5,14 +5,15 @@ import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/Icons/BrandIcons";
 import SiteFooter from "@/components/Site/SiteFooter";
 import SiteHeader from "@/components/Site/SiteHeader";
-import { FAQ } from "@/lib/faq";
 import { CLINIC } from "@/lib/clinic";
+import { DETOX_HOME, REVIEWS } from "@/lib/detoxHome";
+import { FAQ } from "@/lib/faq";
 import { submitContact } from "@/lib/submitContact";
 
 const benefits = [
   { icon: "icon-pin", text: "Выезд круглосуточно" },
   { icon: "icon-person", text: "Консультация на дому бесплатно" },
-  { icon: "icon-chair", text: "Приём по записи" },
+  { icon: "icon-chair", text: "Приезд от 15 минут" },
 ] as const;
 
 const visitSteps = [
@@ -22,7 +23,7 @@ const visitSteps = [
   },
   {
     title: "Осмотр",
-    text: "Врач приезжает на дом во Владикавказе и по РСО-Алании.",
+    text: "Врач приезжает от 15 минут: на дом во Владикавказе и по РСО-Алании.",
   },
   {
     title: "Помощь на месте",
@@ -237,6 +238,55 @@ export default function HomePage() {
             </ol>
           </section>
 
+          <section className="plans" id="detox" aria-labelledby="detox-title">
+            <div className="section-heading">
+              <p className="eyebrow">
+                ВАРИАНТЫ ПОМОЩИ
+                <span />
+              </p>
+              <h2 id="detox-title">{DETOX_HOME.title}</h2>
+              <p className="faq-intro">{DETOX_HOME.lead}</p>
+              <p className="plan-phones">
+                <a href={`tel:${CLINIC.phoneE164}`}>
+                  Клиника {CLINIC.phoneDisplay}
+                </a>
+                <a href={`tel:${CLINIC.doctorPhoneE164}`}>
+                  Врач {CLINIC.doctorPhoneDisplay}
+                </a>
+              </p>
+            </div>
+            <div className="plan-grid">
+              {DETOX_HOME.plans.map((plan) => (
+                <article className="plan-card" key={plan.title}>
+                  <h3>{plan.title}</h3>
+                  <p className="plan-summary">{plan.summary}</p>
+                  <h4>Когда может применяться</h4>
+                  <ul>
+                    {plan.when.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <h4>Что входит</h4>
+                  <ul>
+                    {plan.includes.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <p>{plan.goal}</p>
+                  <a className="button" href="#appointment">
+                    Записаться
+                  </a>
+                </article>
+              ))}
+            </div>
+            <aside className="plan-caution">
+              <h3>Важно знать</h3>
+              {DETOX_HOME.caution.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </aside>
+          </section>
+
           <section className="clinic" id="clinic" aria-labelledby="clinic-title">
             <div className="clinic-copy">
               <p className="eyebrow">
@@ -309,6 +359,63 @@ export default function HomePage() {
                   loading="lazy"
                 />
               </button>
+            </div>
+          </section>
+
+          <section className="reviews" aria-labelledby="reviews-title">
+            <div className="section-heading">
+              <p className="eyebrow">
+                ОТЗЫВЫ
+                <span />
+              </p>
+              <h2 id="reviews-title">Что пишут пациенты</h2>
+            </div>
+            <div className="review-grid">
+              {REVIEWS.map((review) => (
+                <figure className="review-card" key={review.name + review.date}>
+                  <blockquote>
+                    <p>{review.text}</p>
+                  </blockquote>
+                  <figcaption>
+                    <strong>{review.name}</strong>
+                    <span>
+                      {review.source} · {review.date}
+                    </span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+
+          <section className="papers" aria-labelledby="papers-title">
+            <div className="section-heading">
+              <p className="eyebrow">
+                ДОКУМЕНТЫ
+                <span />
+              </p>
+              <h2 id="papers-title">{CLINIC.legal.sanitary.title}</h2>
+              <p className="faq-intro">
+                № {CLINIC.legal.sanitary.number} от {CLINIC.legal.sanitary.issued}.{" "}
+                {CLINIC.legal.sanitary.issuer}. Помещение: {CLINIC.legal.sanitary.place}.
+              </p>
+            </div>
+            <div className="paper-grid">
+              <figure>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={CLINIC.legal.sanitary.image}
+                  alt="Санитарно-эпидемиологическое заключение от 1 августа 2026 года"
+                />
+                <figcaption>Заключение</figcaption>
+              </figure>
+              <figure>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={CLINIC.legal.sanitary.appendix}
+                  alt="Приложение к санитарно-эпидемиологическому заключению"
+                />
+                <figcaption>Приложение</figcaption>
+              </figure>
             </div>
           </section>
 

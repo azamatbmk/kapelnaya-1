@@ -51,6 +51,14 @@ export default function SiteFooter() {
             </Link>
           </nav>
         </div>
+        <p className="footer-phones">
+          <a href={`tel:${CLINIC.phoneE164}`}>
+            Клиника {CLINIC.phoneDisplay}
+          </a>
+          <a href={`tel:${CLINIC.doctorPhoneE164}`}>
+            Врач {CLINIC.doctorPhoneDisplay}
+          </a>
+        </p>
         <p className="medical-note">
           Имеются противопоказания. Необходима консультация специалиста.
         </p>
@@ -90,8 +98,12 @@ export default function SiteFooter() {
             </dd>
           </div>
           <div>
-            <dt>Адрес</dt>
+            <dt>Адрес клиники</dt>
             <dd>{CLINIC.address}</dd>
+          </div>
+          <div>
+            <dt>Юридический адрес</dt>
+            <dd>{CLINIC.legalAddress}</dd>
           </div>
           <div>
             <dt>ИНН</dt>
@@ -114,9 +126,23 @@ export default function SiteFooter() {
             <dd>{CLINIC.legal.corr}</dd>
           </div>
           <div>
-            <dt>Телефон</dt>
+            <dt>Телефон клиники</dt>
             <dd>
               <a href={`tel:${CLINIC.phoneE164}`}>{CLINIC.phoneDisplay}</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Телефон врача</dt>
+            <dd>
+              <a href={`tel:${CLINIC.doctorPhoneE164}`}>
+                {CLINIC.doctorPhoneDisplay}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt>Санэпидзаключение</dt>
+            <dd>
+              № {CLINIC.legal.sanitary.number} от {CLINIC.legal.sanitary.issued}
             </dd>
           </div>
           <div>

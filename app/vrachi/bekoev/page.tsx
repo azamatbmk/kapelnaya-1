@@ -136,7 +136,13 @@ export default function DoctorPage() {
               <h2 id="doctor-contacts">Профили и контакты</h2>
               <ul className="doctor-points">
                 <li>
-                  Телефон:{" "}
+                  Клиника:{" "}
+                  <a href={`tel:${DOCTOR.contacts.clinicPhoneE164}`}>
+                    {DOCTOR.contacts.clinicPhoneDisplay}
+                  </a>
+                </li>
+                <li>
+                  Врач, если не дозвонились в клинику:{" "}
                   <a href={`tel:${DOCTOR.contacts.phoneE164}`}>
                     {DOCTOR.contacts.phoneDisplay}
                   </a>

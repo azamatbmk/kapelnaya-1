@@ -11,7 +11,7 @@ export default function JsonLd() {
         "@id": `${SITE_URL}/#clinic`,
         name: CLINIC.brand,
         url: SITE_URL,
-        telephone: CLINIC.phoneE164,
+        telephone: [CLINIC.phoneE164, CLINIC.doctorPhoneE164],
         email: CLINIC.email,
         address: {
           "@type": "PostalAddress",

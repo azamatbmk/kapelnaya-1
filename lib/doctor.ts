@@ -32,13 +32,14 @@ export const DOCTOR = {
   educationNote:
     "Диплом и аккредитация подтверждаются Минздравом России. Копии документов предоставляются по запросу на консультации.",
   schedule: [
-    "Выезд на дом — круглосуточно, включая выходные и праздники",
+    `Выезд на дом — круглосуточно, включая выходные и праздники. Приезд ${CLINIC.arrival}.`,
     "Плановый приём и консультации — по предварительной записи (телефон или форма на сайте)",
     "Зона: Владикавказ и населённые пункты РСО-Алании (выезд по согласованию)",
   ],
   credentials: [
     `${CLINIC.legal.form} ${CLINIC.legal.name}.`,
-    `Юридический и фактический адрес: ${CLINIC.address}.`,
+    `Адрес клиники: ${CLINIC.address}.`,
+    `Юридический адрес: ${CLINIC.legalAddress}.`,
     `ИНН ${CLINIC.legal.inn}. ОГРНИП ${CLINIC.legal.ogrnip}.`,
     `Р/с ${CLINIC.legal.account}. БИК ${CLINIC.legal.bik}. К/с ${CLINIC.legal.corr}.`,
   ],
@@ -46,6 +47,8 @@ export const DOCTOR = {
   contacts: {
     phoneDisplay: PHONE_DISPLAY,
     phoneE164: PHONE_E164,
+    clinicPhoneDisplay: CLINIC.phoneDisplay,
+    clinicPhoneE164: CLINIC.phoneE164,
     email: CONTACT_EMAIL,
   },
   profiles: {

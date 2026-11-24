@@ -29,7 +29,7 @@
 .price-card h3{font-size:1.05rem;line-height:1.25;font-weight:700;letter-spacing:-.03em;color:var(--navy)}
 .price-card p{font-size:.9rem;line-height:1.3;font-weight:600;color:var(--gold)}
 .requisites{display:flex;flex-direction:column;gap:.55rem;margin:1rem 0}
-.requisites div{display:grid;grid-template-columns:6.5rem 1fr;gap:.4rem 1rem}
+.requisites div{display:grid;grid-template-columns:9.2rem 1fr;gap:.4rem 1rem}
 .requisites dt{font-size:.75rem;font-weight:600;color:var(--gold)}
 .requisites dd{margin:0;font-size:.88rem;line-height:1.4}
 .faq{background:#fff;padding:2.1rem 2.5rem 2.4rem}
@@ -90,6 +90,35 @@
 .advice-card ul{list-style:none;margin:.8rem 0 0;padding:0;display:flex;flex-direction:column;gap:.65rem}
 .advice-card li{position:relative;padding-left:.9rem;font-size:.88rem;line-height:1.45;color:#404246}
 .advice-card li:before{content:"";position:absolute;left:0;top:.5rem;width:.38rem;height:.38rem;border-radius:50%;background:var(--gold)}
+.footer-phones{display:flex;flex-wrap:wrap;gap:.35rem 1.4rem;padding:.15rem 0 .2rem;font-size:.78rem;font-weight:600}
+.footer-phones a:hover{color:var(--gold)}
+.plans{padding:1.2rem 2.5rem 2.4rem;background:#fff}
+.plan-phones{display:flex;flex-wrap:wrap;gap:.45rem 1.4rem;margin-top:.85rem;font-weight:700;color:var(--navy)}
+.plan-phones a:hover{color:var(--gold)}
+.plan-grid{margin-top:1.15rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+.plan-card{border:1px solid #ded8d1;background:#fcfaf7;border-radius:.78rem;padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:.45rem}
+.plan-card h3{font-size:1.15rem;line-height:1.25;font-weight:700;letter-spacing:-.03em;color:var(--navy)}
+.plan-summary{font-size:.86rem;line-height:1.4;color:#404246}
+.plan-card h4{margin-top:.35rem;font-size:.78rem;letter-spacing:.03em;text-transform:uppercase;color:var(--gold)}
+.plan-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
+.plan-card li{position:relative;padding-left:.85rem;font-size:.82rem;line-height:1.4;color:#404246}
+.plan-card li:before{content:"";position:absolute;left:0;top:.45rem;width:.32rem;height:.32rem;border-radius:50%;background:var(--gold)}
+.plan-card>.button{margin-top:auto;align-self:flex-start}
+.plan-caution{margin-top:.75rem;border:1px solid #ded8d1;border-radius:.78rem;background:#f6f3ee;padding:1.1rem 1.2rem}
+.plan-caution h3{font-size:1.15rem;color:var(--navy)}
+.plan-caution p{margin-top:.45rem;font-size:.88rem;line-height:1.5;color:#404246;max-width:46rem}
+.reviews,.papers{padding:1.2rem 2.5rem 2.4rem}
+.review-grid,.paper-grid{margin-top:1.15rem;display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.review-card{margin:0;border:1px solid #ded8d1;background:#fcfaf7;border-radius:.78rem;padding:1.1rem 1.15rem}
+.review-card p{font-size:.88rem;line-height:1.5;color:#404246}
+.review-card figcaption{display:flex;flex-direction:column;gap:.15rem;margin-top:.8rem}
+.review-card strong{color:var(--navy);font-size:.9rem}
+.review-card span{font-size:.75rem;color:var(--gold)}
+.papers{background:#e8e6e1}
+.paper-grid{align-items:start}
+.paper-grid figure{margin:0;background:#f7f7f5;padding:.85rem .85rem .7rem;box-shadow:0 .45rem 1.4rem rgba(16,30,40,.16)}
+.paper-grid img{width:100%;height:auto;border:0;border-radius:0;background:#fff}
+.paper-grid figcaption{margin-top:.55rem;font-size:.78rem;letter-spacing:.02em;color:#5c6570;text-align:center}
 
 @media(max-width:760px){
  .price-grid{grid-template-columns:1fr;gap:.75rem}
@@ -103,7 +132,7 @@
  .doctor-photo{height:auto;max-height:18rem;width:100%;justify-self:center}
  .doctor-layout{grid-template-columns:1fr}
  .doctor-actions .button{width:100%}
- .visit,.advice{padding:2rem 1.25rem 2.2rem}
- .visit-steps,.advice-grid{grid-template-columns:1fr}
+ .visit,.advice,.plans,.reviews,.papers{padding:2rem 1.25rem 2.2rem}
+ .visit-steps,.advice-grid,.plan-grid,.review-grid,.paper-grid{grid-template-columns:1fr}
 }
 

@@ -1,5 +1,10 @@
 import { CONTACT_EMAIL, SITE_NAME } from "@/lib/site";
-import { PHONE_DISPLAY, PHONE_E164 } from "@/lib/phone";
+import {
+  CLINIC_PHONE_DISPLAY,
+  CLINIC_PHONE_E164,
+  PHONE_DISPLAY,
+  PHONE_E164,
+} from "@/lib/phone";
 
 /** Данные клиники. Индекс 362008 — для ул. Карла Маркса, д. 11 (в исходной записи было 3620008). */
 export const CLINIC = {
@@ -11,11 +16,16 @@ export const CLINIC = {
   region: "РСО-Алания",
   postalCode: "362008",
   street: "ул. Карла Маркса, д. 11",
-  phoneDisplay: PHONE_DISPLAY,
-  phoneE164: PHONE_E164,
+  phoneDisplay: CLINIC_PHONE_DISPLAY,
+  phoneE164: CLINIC_PHONE_E164,
+  doctorPhoneDisplay: PHONE_DISPLAY,
+  doctorPhoneE164: PHONE_E164,
+  arrival: "от 15 минут",
   email: CONTACT_EMAIL,
   address:
     "362008, Республика Северная Осетия — Алания, г. Владикавказ, ул. Карла Маркса, д. 11",
+  legalAddress:
+    "Республика Северная Осетия — Алания, г. Беслан, ул. Надтеречная, д. 2А",
   schedule: "Приём по предварительной записи. Уточняйте график по телефону.",
   legal: {
     form: "Индивидуальный предприниматель",
@@ -28,6 +38,16 @@ export const CLINIC = {
     executor: "ИП Бекоев Олег Альбертович",
     license:
       "Номер лицензии на медицинскую деятельность уточняйте по телефону.",
+    sanitary: {
+      title: "Санитарно-эпидемиологическое заключение",
+      number: "15.01.09.000.М.000278.08.26",
+      issued: "01.08.2026",
+      issuer:
+        "Управление Роспотребнадзора по Республике Северная Осетия — Алания",
+      place: "г. Владикавказ, ул. Карла Маркса, д. 11",
+      image: "/documents/sanitary-conclusion-flat.jpg",
+      appendix: "/documents/sanitary-appendix-flat.jpg",
+    },
   },
   services: [
     { title: "Вывод из запоя", price: "от 4 500 ₽" },
